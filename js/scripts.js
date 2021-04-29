@@ -17,9 +17,9 @@ $(document).ready(function () {
     $("#field").droppable({
         drop: function (event, ui) {
             let ans;
-            if (ui.draggable.text() == "=")
+            if (ui.draggable.attr("id") == "equal")
                 ans = "equal";
-            else if (ui.draggable.text() == "<")
+            else if (ui.draggable.attr("id") == "less")
                 ans = "less";
             else ans = "bigger";
             $.get({
