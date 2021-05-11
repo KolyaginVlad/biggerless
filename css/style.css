@@ -6,6 +6,8 @@
 body{
     background: rgb(25,0,38);
     background: linear-gradient(90deg, rgba(25,0,31,1) 0%, rgba(130,0,201,1) 50%, rgba(0,25,31,1) 100%);
+    text-align: center;
+
 }
 span {
     font-size: 60px;
@@ -41,6 +43,29 @@ span {
     justify-content: center;
     align-items: center;
     align-content: center;
+}
+
+#gameBody{
+    border: #dad55e 1px solid;
+    display: inline-block;
+}
+
+#field{
+    border-color: brown;
+    border-width: 5px;
+    border-style: dashed;
+    border-radius: 5px;
+}
+
+#title{
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: larger;
+    color: darkblue;
+}
+
+#timer{
+    font-size: xx-large;
+    font-family: Banty;
 }
 
 .ans{
