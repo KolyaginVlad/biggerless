@@ -1,6 +1,21 @@
+@font-face {
+    font-family: 'Banty';
+    src: url("../fonts/font.ttf") format("truetype");
+    font-weight: 400;
+}
+
 body {
     font-family: sans-serif;
-    background: #34495e;
+    background: rgb(25, 0, 38);
+    background: linear-gradient(90deg, rgba(25, 0, 31, 1) 0%, rgba(130, 0, 201, 1) 50%, rgba(0, 25, 31, 1) 100%);
+    text-align: center;
+
+}
+
+span {
+    font-size: 60px;
+    margin: 20px;
+    padding: 3px;
 }
 
 form {
@@ -35,7 +50,7 @@ form input:focus, select:focus {
     border-radius: 30px;
 }
 
-select{
+select {
     transition: 0.1s;
 }
 
@@ -50,17 +65,78 @@ form input[type = "button"]:focus {
     transition: 0.25s;
 }
 
-form select option{
+form select option {
     background: #34495e;
 }
 
-#head, #login, #or, #reg {
+#head, #login, #or, #reg, #ans {
     text-align: center;
     font-weight: bold;
     font-size: larger;
     color: deepskyblue;
 }
 
-#login:hover, #reg:hover{
+#login:hover, #reg:hover {
     color: greenyellow;
+}
+
+
+#ansBody {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#game span {
+    width: 230px;
+    height: 100%;
+    text-align: center;
+}
+
+#answer {
+    color: green;
+    font-size: 45px;
+    text-align: center;
+}
+
+#game {
+    font-family: Banty;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#gameBody {
+    border: #dad55e 1px solid;
+    display: inline-block;
+}
+
+#field {
+    border-color: brown;
+    border-width: 5px;
+    border-style: dashed;
+    border-radius: 5px;
+}
+
+#title {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: larger;
+    color: darkblue;
+}
+
+#timer {
+    font-size: xx-large;
+    font-family: Banty;
+}
+
+.ans {
+    border-radius: 50%;
+    margin: 10px;
+    width: 75px;
+    height: 75px;
 }

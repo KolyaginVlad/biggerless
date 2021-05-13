@@ -5,20 +5,22 @@
     <title>Form</title>
     <link rel="stylesheet" href="css/styleform.css">
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="js/formscripts.js"></script>
 </head>
 <body>
 
 <form id="form">
     <div id="head">Регистрация</div>
-    <select name="lvl">
-        <option value="Только целые числа">Только целые числа</option>
-        <option value="Целые числа и дроби">Целые числа и дроби</option>
-        <option value="Целые числа, дроби и иррациональные числа">Целые числа, дроби и иррациональные числа</option>
+    <select id="lvl">
+        <option value="1">Только целые числа</option>
+        <option value="2">Целые числа и дроби</option>
+        <option value="3">Целые числа, дроби и иррациональные числа</option>
     </select><br>
-    <input type="email" placeholder="Электронная почта" name="email"><br>
-    <input type="password" placeholder="Пароль" name="pas"><br>
-    <input type="password" placeholder="Подтверждение пароля" name="repas"><br>
+    <input placeholder="Имя" id="log"><br>
+    <input type="password" placeholder="Пароль" id="pas"><br>
+    <input type="password" placeholder="Подтверждение пароля" id="repas"><br>
+    <div id="ans"></div><br>
     <input  type="button" id='start' value="Зарегистрироваться и начать">
     <div id="or">или </div><br>
     <div id="login">Вход</div>
