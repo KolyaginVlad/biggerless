@@ -2,7 +2,7 @@ $(document).ready(function () {
     let isLog = false;
     fix();
 
-    function game (a) {
+    function game (a, name) {
         let counterTrue = 0;
         let counterFalse = 0;
         const less = $("#less").offset();
@@ -14,7 +14,12 @@ $(document).ready(function () {
 
         function timeOut(){
             clearTimeout(timer);
-            clearInterval(interval)
+            clearInterval(interval);
+            $("body").html("" +
+                "<table>" +
+                "<tr><th>Имя</th><th>Очки</th></tr>"+
+                "</table>");
+
         }
 
         function intervalOut(){
@@ -107,6 +112,7 @@ $(document).ready(function () {
             }
         });
         $("#less").draggable({
+            containment: $("#gameBody"),
             start: function () {
                 $("#less").css('color', '#F00');
             },
@@ -115,6 +121,7 @@ $(document).ready(function () {
             }
         });
         $("#bigger").draggable({
+            containment: $("#gameBody"),
             start: function () {
                 $("#bigger").css('color', '#F00');
             },
@@ -123,6 +130,7 @@ $(document).ready(function () {
             }
         });
         $("#equal").draggable({
+            containment: $("#gameBody"),
             start: function () {
                 $("#equal").css('color', '#F00');
             },
@@ -171,8 +179,9 @@ $(document).ready(function () {
                     if (data.answer==true){
                         $.post('game.php', function (data) {
                             let a = $("#lvl").val();
+                            let name = $("#log").val();
                             $("body").html(data);
-                            game(a);
+                            game(a, name);
                         });
                     }
                     else {
@@ -185,8 +194,9 @@ $(document).ready(function () {
                     if (data.answer=="ok"){
                         $.post('game.php', function (data) {
                             let a = $("#lvl").val();
+                            let name = $("#log").val();
                             $("body").html(data);
-                            game(a);
+                            game(a, name);
                         });
                     }else
                     $("#ans").html(data.answer);

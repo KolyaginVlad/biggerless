@@ -129,7 +129,7 @@ form select option {
     color: darkblue;
 }
 
-#timer {
+#timer, table {
     font-size: xx-large;
     font-family: Banty;
 }
