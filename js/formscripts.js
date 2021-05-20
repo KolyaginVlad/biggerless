@@ -1,24 +1,64 @@
 $(document).ready(function () {
     let isLog = false;
-    fix();
+    $.post("islogin.php",{}, function (data) {
+        if (data.islog) {
+            $.post('game.php', function (data1) {
+                $("body").html(data1);
+                game(data.lvl);
+            });
+        }
+        else fix();
+    }, "json");
 
-    function game (a, name) {
+
+    function game (a) {
         let counterTrue = 0;
         let counterFalse = 0;
         const less = $("#less").offset();
         const bigger = $("#bigger").offset();
         const equal = $("#equal").offset();
+        let lvls = new Map();
+        lvls.set(1,"Только целые числа");
+        lvls.set(2,"Целые числа и дроби");
+        lvls.set(3,"Целые числа, дроби и иррациональные числа");
         newValues();
         const interval = setInterval(intervalOut, 1000);
-        const timer  = setTimeout(timeOut,1000*60);
+        const timer  = setTimeout(timeOut,1000*10);
 
         function timeOut(){
             clearTimeout(timer);
             clearInterval(interval);
-            $("body").html("" +
-                "<table>" +
-                "<tr><th>Имя</th><th>Очки</th></tr>"+
-                "</table>");
+            $.post("count.php",{}, function (data) {
+                let table = "";
+                for(let i = 1; i<=data.num;i++){
+                    table+="<tr><td>"+data.table[i].login+"</td><td>"+data.table[i].count+"</td><td>"+lvls.get( data.table[i].lvl)+"</td></tr>";
+                }
+                $("body").html("<div id='score'>" +
+                    "<div>"+data.high+"</div>" +
+                    "<div>Ваш счёт:"+data.now+"</div>" +
+                    "<select id=\"lvl\">\n" +
+                    "        <option value=\"1\">Только целые числа</option>\n" +
+                    "        <option value=\"2\">Целые числа и дроби</option>\n" +
+                    "        <option value=\"3\">Целые числа, дроби и иррациональные числа</option>\n" +
+                    "    </select>" +
+                    "</div>" +
+                    "<div id='table'>" +
+                    "<table>" +
+                    "<tr><td>Имя</td><td>Очки</td><td>Уровень сложности</td></tr>"+
+                    table+
+                    "</table>" +
+                    "</div>");
+                $("#score").append("<input type='button' value='Ещё раз!' id='restart'>");
+                $("#lvl").val(a);
+                $("#restart").click(function () {
+                    $.post('game.php', function (data1) {
+                        $("body").html(data1);
+                        game($("#lvl").val());
+                        //TODO отправить серверу запрос
+                    });
+                })
+            }, "json");
+
 
         }
 
@@ -93,7 +133,6 @@ $(document).ready(function () {
                         "&second=" + $("#second").text() +
                         "&answer=" + ans,
                     success: function (data) {
-                        alert(data.ans);
                         if (data.ans) {
                             counterFalse = 0;
                             counterTrue++;
@@ -179,9 +218,8 @@ $(document).ready(function () {
                     if (data.answer==true){
                         $.post('game.php', function (data) {
                             let a = $("#lvl").val();
-                            let name = $("#log").val();
                             $("body").html(data);
-                            game(a, name);
+                            game(a);
                         });
                     }
                     else {
@@ -194,9 +232,8 @@ $(document).ready(function () {
                     if (data.answer=="ok"){
                         $.post('game.php', function (data) {
                             let a = $("#lvl").val();
-                            let name = $("#log").val();
                             $("body").html(data);
-                            game(a, name);
+                            game(a);
                         });
                     }else
                     $("#ans").html(data.answer);

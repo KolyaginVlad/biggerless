@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+if (isset($_POST["lvl"]))$_SESSION["lvl"] = $_POST["lvl"];
+?>
 <div id="body">
     <div id="title">Укажите правильный знак для неравенства.</div><br>
     <div id="gameBody">

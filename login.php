@@ -1,4 +1,5 @@
 <?php
+session_start();
 $file = fopen("data.txt", "r");
 $flag = false;
 while(!feof($file))
@@ -11,6 +12,13 @@ while(!feof($file))
         $flag = true;
     }
 }
+if ($flag){
+    $_SESSION["login"]=$_POST["login"];
+    error_log($_SESSION["login"]);
+}
 $answer['answer'] = $flag;
+error_log($flag);
+$_SESSION['count'] = 0;
+$_SESSION['lvl'] = $_POST["lvl"];
 echo json_encode($answer);
 fclose($file);

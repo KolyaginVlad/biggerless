@@ -4,6 +4,10 @@
     font-weight: 400;
 }
 
+table, tr, td{
+    border: white 1px solid;
+}
+
 body {
     font-family: sans-serif;
     background: rgb(25, 0, 38);
@@ -129,9 +133,39 @@ form select option {
     color: darkblue;
 }
 
-#timer, table {
+#timer, #table {
     font-size: xx-large;
     font-family: Banty;
+}
+
+#table{
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#score{
+    font-size: xx-large;
+    font-family: Banty;
+    text-align: center;
+}
+
+#restart{
+    margin: 20px auto;
+    background: none;
+    text-align: center;
+    display: block;
+    border: 2px solid #3498db;
+    border-radius: 24px;
+    padding: 14px 10px;
+    width: 240px;
+    outline: none;
+    color: white;
+    transition: 0.25s;
 }
 
 .ans {

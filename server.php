@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (str_contains($_GET["first"], "/")){
     $first = (int)(substr($_GET["first"],0,(int)strpos($_GET["first"], "/") ))/(int)(substr($_GET["first"],(int)strpos
         ($_GET["first"], "/")+1,strlen($_GET["first"])-(int)strpos
@@ -23,17 +24,27 @@ else if(str_contains($_GET["second"], "√")){
 else{
     $second = (int)$_GET["second"];
 }
+
 switch ($_GET["answer"]){
     case "equal":
-        if ($first==$second) echo json_encode(["ans"=>true]);
+        if ($first==$second) {
+            $_SESSION["count"]+=(int)$_SESSION["lvl"];
+            echo json_encode(["ans" => true]);
+        }
         else echo json_encode(["ans"=>false]);
         break;
     case "less":
-        if ($first<$second) echo json_encode(["ans"=>true]);
+        if ($first<$second) {
+            $_SESSION["count"]+=(int)$_SESSION["lvl"];
+            echo json_encode(["ans" => true]);
+        }
         else echo json_encode(["ans"=>false]);
         break;
     case "bigger":
-        if ($first>$second) echo json_encode(["ans"=>true]);
+        if ($first>$second) {
+            $_SESSION["count"]+=(int)$_SESSION["lvl"];
+            echo json_encode(["ans" => true]);
+        }
         else echo json_encode(["ans"=>false]);
         break;
 }
