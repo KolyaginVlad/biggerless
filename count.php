@@ -48,6 +48,7 @@ else if ($flag=="no"){
     $scoreNow["count"] = $_SESSION["count"];
     $scoreNow["lvl"] = $_SESSION["lvl"];
     fwrite($file, json_encode($scoreNow)."\n");
+    $answer["high"] = "";
 }
 else{
     $answer["high"] = "Ваш лучший счёт:" . $lastCount;

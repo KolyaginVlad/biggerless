@@ -9,3 +9,5 @@
 {"login":"1","password":"1","lvl":"1"}
 {"login":"555","password":"5","lvl":"1"}
 {"login":"11","password":"1","lvl":"1"}
+{"login":"77","password":"7","lvl":"1"}
+{"login":"artem","password":"123","lvl":"1"}

@@ -133,7 +133,7 @@ form select option {
     color: darkblue;
 }
 
-#timer, #table {
+#timer, #table,#text, #right {
     font-size: xx-large;
     font-family: Banty;
 }
@@ -166,6 +166,14 @@ form select option {
     outline: none;
     color: white;
     transition: 0.25s;
+}
+
+#lvl option{
+    color: black;
+}
+
+#restart, #lvl{
+    font-size: 20px;
 }
 
 .ans {

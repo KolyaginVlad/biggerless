@@ -6,7 +6,7 @@ if (str_contains($_GET["first"], "/")){
             ($_GET["first"], "/")-1 ));
 }
 else if(str_contains($_GET["first"], "√")){
-    $first = sqrt((int)(substr($_GET["first"], 1)));
+    $first = sqrt((int)(substr($_GET["first"], 3)));
 }
 else{
    $first = (int)$_GET["first"];

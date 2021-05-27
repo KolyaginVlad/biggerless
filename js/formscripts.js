@@ -18,12 +18,12 @@ $(document).ready(function () {
         const bigger = $("#bigger").offset();
         const equal = $("#equal").offset();
         let lvls = new Map();
-        lvls.set(1,"Только целые числа");
-        lvls.set(2,"Целые числа и дроби");
-        lvls.set(3,"Целые числа, дроби и иррациональные числа");
+        lvls.set("1","Только целые числа");
+        lvls.set("2","Целые числа и дроби");
+        lvls.set("3","Целые числа, дроби и иррациональные числа");
         newValues();
         const interval = setInterval(intervalOut, 1000);
-        const timer  = setTimeout(timeOut,1000*10);
+        const timer  = setTimeout(timeOut,1000*60);
 
         function timeOut(){
             clearTimeout(timer);
@@ -50,11 +50,17 @@ $(document).ready(function () {
                     "</div>");
                 $("#score").append("<input type='button' value='Ещё раз!' id='restart'>");
                 $("#lvl").val(a);
+                $("#lvl").change(function () {
+                    $.post('setnewlvl.php',{lvl: $("#lvl").val()}, function (data1) {
+
+                    }, "json");
+                });
                 $("#restart").click(function () {
                     $.post('game.php', function (data1) {
+                        let e= $("#lvl").val()
                         $("body").html(data1);
-                        game($("#lvl").val());
-                        //TODO отправить серверу запрос
+                        game(e);
+
                     });
                 })
             }, "json");
@@ -78,46 +84,16 @@ $(document).ready(function () {
         }
 
         function newValues() {
-            if (a==1) {
-                $("#first").text((Math.floor(Math.random() * (1000 - 1)) + 1));
-                $("#second").text((Math.floor(Math.random() * (1000 - 1)) + 1));
-            }else if(a==2){
-                if(Math.random()>0.5){
-                    $("#first").text((Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                else {
-                    $("#first").text((Math.floor(Math.random() * (1000 - 1)) + 1)+"/"+(Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                if(Math.random()>0.5){
-                    $("#second").text((Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                else {
-                    $("#second").text((Math.floor(Math.random() * (1000 - 1)) + 1)+"/"+(Math.floor(Math.random() *(1000 - 1)) + 1));
-                }
-            }
-            else {
-                if(Math.random()<0.3){
-                    $("#first").text((Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                else if (Math.random()<0.6){
-                    $("#first").text((Math.floor(Math.random() * (1000 - 1)) + 1)+"/"+(Math.floor(Math.random() *(1000 - 1)) + 1));
-                }
-                else {
-                    $("#first").text("√"+(Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                if(Math.random()<0.3){
-                    $("#second").text((Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                else if (Math.random()<0.6){
-                    $("#second").text((Math.floor(Math.random() * (1000 - 1)) + 1)+"/"+(Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-                else {
-                    $("#second").text("√"+(Math.floor(Math.random() * (1000 - 1)) + 1));
-                }
-            }
-            $("#less").offset(less);
-            $("#equal").offset(equal);
-            $("#bigger").offset(bigger)
+            //jQuery.ajaxSetup({async:false});
+            $.post("newvalues.php",{},function (data) {
+                $("#first").text(data.first);
+                $("#second").text(data.second);
+                $("#less").offset(less);
+                $("#equal").offset(equal);
+                $("#bigger").offset(bigger);
+                $("#right").text(data.score);
+            }, "json");
+            //jQuery.ajaxSetup({async:true});
         }
 
         $("#field").droppable({

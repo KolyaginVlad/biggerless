@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_POST["lvl"]))$_SESSION["lvl"] = $_POST["lvl"];
+$_SESSION["count"] = 0;
 ?>
 <div id="body">
     <div id="title">Укажите правильный знак для неравенства.</div><br>
@@ -13,5 +13,7 @@ if (isset($_POST["lvl"]))$_SESSION["lvl"] = $_POST["lvl"];
                                                                                                       class="ans" id="bigger"/>
     </div>
     </div>
+    <div id="text">Ваши очки:</div>
+    <div id="right">0</div>
     <div id="timer">1:00</div>
 </div>
